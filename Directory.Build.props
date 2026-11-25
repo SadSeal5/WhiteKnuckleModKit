@@ -1,0 +1,23 @@
+<Project>
+  <PropertyGroup>
+    <!-- Oyunun kurulu olduğu yer. Komut satırından geçersiz kılınabilir: -p:GameDir=... -->
+    <GameDir Condition="'$(GameDir)' == ''">D:\SteamLibrary\steamapps\common\White Knuckle</GameDir>
+    <GameDataDir>$(GameDir)\White Knuckle_Data</GameDataDir>
+    <GameManagedDir>$(GameDataDir)\Managed</GameManagedDir>
+    <!-- Depoya gömülü dağıtım dosyaları -->
+    <BepInExDistDir>$(MSBuildThisFileDirectory)tools\bepinex</BepInExDistDir>
+    <!-- Unity 6 Mono runtime ile uyumlu, muhafazakar dil seviyesi -->
+    <LangVersion>7.3</LangVersion>
+    <Nullable>disable</Nullable>
+    <Deterministic>true</Deterministic>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <!-- Oyun kurulum yolu yanlışsa "metadata file not found" (CS0006) yerine tek net hata ver.
+       -p:GameDir ile geçersiz kılınabilir; koşul tüm özellikler hesaplandıktan sonra değerlendirilir. -->
+  <Target Name="EnsureGameDir"
+          BeforeTargets="BeforeBuild"
+          Condition="'$(DesignTimeBuild)' != 'true' and !Exists('$(GameManagedDir)')">
+    <Error Text="Oyun kurulumu bulunamadı: '$(GameDir)'. Directory.Build.props içindeki GameDir değerini kendi makinen için düzenle ya da derlemeye -p:GameDir=&quot;C:\yol\White Knuckle&quot; geçir." />
+  </Target>
+</Project>

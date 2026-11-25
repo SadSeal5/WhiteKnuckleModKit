@@ -1,0 +1,10 @@
+# Build artifacts
+bin/
+obj/
+*.user
+
+# Oyundan decompile edilen kaynak (yeniden üretilebilir, repoya girmesin)
+decomp/
+
+# İndirilen üçüncü parti dağıtımlar (kurucu betik yeniden indirir)
+tools/

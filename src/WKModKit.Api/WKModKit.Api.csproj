@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>WKModKit.Api</AssemblyName>
+    <RootNamespace>WKModKit</RootNamespace>
+    <Description>WKModKit — White Knuckle mod geliştirme API'si. Modlar bu assembly'ye referans verir.</Description>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Harmony, BepInEx dağıtımıyla birlikte gelir; derleme için yerel kopyayı kullanırız. -->
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExDistDir)\BepInEx\core\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>
